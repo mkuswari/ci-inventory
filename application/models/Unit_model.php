@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Category_model extends CI_Model
+class Unit_model extends CI_Model
 {
 
-	var $table = 'categories';
-	var $columnOrder = array('category_code', 'category_name', 'category_description',  null);
-	var $columnSearch = array('category_code', 'category_name');
-	var $order = array('id_category' => 'desc');
+	var $table = 'units';
+	var $columnOrder = array('unit_name', 'unit_description',  null);
+	var $columnSearch = array('unit_name');
+	var $order = array('id_unit' => 'desc');
 
 
 	private function _getDatatablesQuery()
@@ -62,7 +62,7 @@ class Category_model extends CI_Model
 	public function getById($id)
 	{
 		$this->db->from($this->table);
-		$this->db->where('id_category', $id);
+		$this->db->where('id_unit', $id);
 		return $this->db->get()->row();
 	}
 
@@ -80,7 +80,7 @@ class Category_model extends CI_Model
 
 	public function deleteById($id)
 	{
-		$this->db->where('id_category', $id);
+		$this->db->where('id_unit', $id);
 		$this->db->delete($this->table);
 	}
 }

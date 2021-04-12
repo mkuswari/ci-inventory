@@ -17,7 +17,7 @@
 				<ul class="dropdown-menu">
 					<li><a class="nav-link" href="layout-default.html">Item</a></li>
 					<li><a class="nav-link" href="<?= base_url("category") ?>">Kategori</a></li>
-					<li><a class="nav-link" href="layout-top-navigation.html">Satuan</a></li>
+					<li><a class="nav-link" href="<?= base_url("unit") ?>">Satuan</a></li>
 				</ul>
 			</li>
 			<li><a class="nav-link" href="blank.html"><i class="fas fa-truck-moving"></i> <span>Kelola Supplier</span></a></li>
