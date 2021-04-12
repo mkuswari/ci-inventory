@@ -1,22 +1,22 @@
 <div class="main-sidebar sidebar-style-2">
 	<aside id="sidebar-wrapper">
 		<div class="sidebar-brand">
-			<a href="index.html">Inventory App</a>
+			<a href="<?= base_url(); ?>">Inventory App</a>
 		</div>
 		<div class="sidebar-brand sidebar-brand-sm">
-			<a href="index.html">IA</a>
+			<a href="<?= base_url(); ?>">IA</a>
 		</div>
 		<ul class="sidebar-menu">
 			<li class="menu-header">Dashboard</li>
 			<li class="active">
-				<a class="nav-link" href="credits.html"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
+				<a class="nav-link" href="<?= base_url('dashboard'); ?>"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
 			</li>
 			<li class="menu-header">Master Data</li>
 			<li class="dropdown">
 				<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-box-open"></i> <span>Kelola Barang</span></a>
 				<ul class="dropdown-menu">
 					<li><a class="nav-link" href="layout-default.html">Item</a></li>
-					<li><a class="nav-link" href="layout-transparent.html">Kategori</a></li>
+					<li><a class="nav-link" href="<?= base_url("category") ?>">Kategori</a></li>
 					<li><a class="nav-link" href="layout-top-navigation.html">Satuan</a></li>
 				</ul>
 			</li>

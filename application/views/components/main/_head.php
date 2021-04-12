@@ -13,6 +13,11 @@
 	<link rel="stylesheet" href="<?= base_url("assets/modules/weather-icon/css/weather-icons-wind.min.css") ?>">
 	<link rel="stylesheet" href="<?= base_url("assets/modules/summernote/summernote-bs4.css") ?>">
 
+	<!-- datatables -->
+	<link rel="stylesheet" href="<?= base_url("assets/modules/datatables/datatables.min.css") ?>">
+	<link rel="stylesheet" href="<?= base_url("assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css") ?>">
+	<!-- ./datatables -->
+
 	<!-- Template CSS -->
 	<link rel="stylesheet" href="<?= base_url("assets/css/style.css") ?>">
 	<link rel="stylesheet" href="<?= base_url("assets/css/components.css") ?>">
