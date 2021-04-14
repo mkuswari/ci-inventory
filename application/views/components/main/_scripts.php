@@ -19,6 +19,7 @@
 <script src="<?= base_url("assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js") ?>"></script>
 <script src="<?= base_url("assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js") ?>"></script>
 <script src="<?= base_url("assets/modules/jquery-ui/jquery-ui.min.js") ?>"></script>
+<script src="<?= base_url("assets/js/page/modules-datatables.js") ?>"></script>
 <!-- ./datatables -->
 
 <!-- sweet alert -->
@@ -26,9 +27,43 @@
 <script src="<?= base_url("assets/js/page/modules-sweetalert.js") ?>"></script>
 <!-- ./sweet alert -->
 
+<script src="<?= base_url("assets/modules/select2/dist/js/select2.full.min.js") ?>"></script>
+<script src="<?= base_url("assets/js/page/forms-advanced-forms.js") ?>"></script>
+
 <!-- Page Specific JS File -->
 <script src="<?= base_url("assets/js/page/index-0.js") ?>"></script>
 
 <!-- Template JS File -->
 <script src="<?= base_url("assets/js/scripts.js") ?>"></script>
 <script src="<?= base_url("assets/js/custom.js") ?>"></script>
+
+<script>
+	const flashData = $('.flash-data').data('flashdata');
+	if (flashData) {
+		swal({
+			title: 'Berhasil',
+			text: 'Data Berhasil ' + flashData,
+			icon: 'success'
+		});
+	}
+
+	// tombol hapus
+	$('.btn-delete').on('click', function(e) {
+
+		e.preventDefault();
+		const href = $(this).attr('href');
+
+		swal({
+			title: "Kamu yakin?",
+			text: "Data akan dihapus!",
+			icon: "warning",
+			buttons: true,
+			dangerMode: true,
+		}).then((result) => {
+			if (result) {
+				document.location.href = href;
+			}
+		})
+
+	})
+</script>

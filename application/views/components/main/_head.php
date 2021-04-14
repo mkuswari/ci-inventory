@@ -18,6 +18,8 @@
 	<link rel="stylesheet" href="<?= base_url("assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css") ?>">
 	<!-- ./datatables -->
 
+	<link rel="stylesheet" href="<?= base_url("assets/modules/select2/dist/css/select2.min.css") ?>">
+
 	<!-- Template CSS -->
 	<link rel="stylesheet" href="<?= base_url("assets/css/style.css") ?>">
 	<link rel="stylesheet" href="<?= base_url("assets/css/components.css") ?>">

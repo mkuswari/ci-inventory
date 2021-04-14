@@ -15,7 +15,7 @@
 			<li class="dropdown">
 				<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-box-open"></i> <span>Kelola Barang</span></a>
 				<ul class="dropdown-menu">
-					<li><a class="nav-link" href="layout-default.html">Item</a></li>
+					<li><a class="nav-link" href="<?= base_url("item") ?>">Item</a></li>
 					<li><a class="nav-link" href="<?= base_url("category") ?>">Kategori</a></li>
 					<li><a class="nav-link" href="<?= base_url("unit") ?>">Satuan</a></li>
 				</ul>
