@@ -20,8 +20,8 @@
 					<li><a class="nav-link" href="<?= base_url("unit") ?>">Satuan</a></li>
 				</ul>
 			</li>
-			<li><a class="nav-link" href="blank.html"><i class="fas fa-truck-moving"></i> <span>Kelola Supplier</span></a></li>
-			<li><a class="nav-link" href="blank.html"><i class="fas fa-users"></i> <span>Kelola Customer</span></a></li>
+			<li><a class="nav-link" href="<?= base_url("supplier") ?>"><i class="fas fa-truck-moving"></i> <span>Kelola Supplier</span></a></li>
+			<li><a class="nav-link" href="<?= base_url("customer") ?>"><i class="fas fa-users"></i> <span>Kelola Customer</span></a></li>
 			<li class="dropdown">
 				<a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Kelola Transaksi</span></a>
 				<ul class="dropdown-menu">

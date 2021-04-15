@@ -37,18 +37,18 @@ class Supplier_model extends CI_Model
 
 	public function makeSupplierCode()
 	{
-		$this->db->select('RIGHT(items.item_code, 2) as item_code', FALSE);
+		$this->db->select('RIGHT(suppliers.supplier_code, 2) as supplier_code', FALSE);
 		$this->db->order_by('item_code', 'DESC');
 		$this->db->limit(1);
-		$query = $this->db->get("items");
+		$query = $this->db->get("suppliers");
 		if ($query->num_rows() <> 0) {
 			$data = $query->row();
-			$itemCode = intval($data->item_code) + 1;
+			$supplierCode = intval($data->supplier_code) + 1;
 		} else {
-			$itemCode = 1;
+			$supplierCode = 1;
 		}
 		$date = date('dmY');
-		$limit = str_pad($itemCode, 3, "0", STR_PAD_LEFT);
+		$limit = str_pad($supplierCode, 3, "0", STR_PAD_LEFT);
 		$showCode = "SPL" . $date . $limit;
 		return $showCode;
 	}
