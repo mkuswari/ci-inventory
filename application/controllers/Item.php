@@ -124,6 +124,12 @@ class Item extends CI_Controller
 
 	public function delete($id)
 	{
+
+		$item = $this->Item_model->getItemById($id);
+		if (file_exists('./assets/uploads/items/' . $item["item_image"]) && $item["item_image"]) {
+			unlink('./assets/uploads/items/' . $item["item_image"]);
+		}
+
 		$this->Item_model->deleteSelectedItem($id);
 		$this->session->set_flashdata('message', 'Dihapus');
 		redirect('item');
