@@ -12,6 +12,7 @@ class Item extends CI_Controller
 			'Category_model',
 			'Unit_model'
 		]);
+		is_login();
 	}
 
 	public function index()

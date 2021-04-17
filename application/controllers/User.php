@@ -8,6 +8,8 @@ class User extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('User_model');
+		is_login();
+		is_admin();
 	}
 
 	public function index()

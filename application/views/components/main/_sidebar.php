@@ -33,8 +33,8 @@
 			<li><a class="nav-link" href="blank.html"><i class="fas fa-file"></i> <span>Rekap Transaksi</span></a></li>
 			<li><a class="nav-link" href="blank.html"><i class="fas fa-file"></i> <span>Rekap Supplier</span></a></li>
 			<li class="menu-header">Pengguna</li>
-			<li><a class="nav-link" href="blank.html"><i class="fas fa-users"></i> <span>Kelola Users</span></a></li>
-			<li><a class="nav-link" href="credits.html"><i class="fas fa-user-circle"></i> <span>Profil Saya</span></a></li>
+			<li><a class="nav-link" href="<?= base_url("user") ?>"><i class="fas fa-users"></i> <span>Kelola Users</span></a></li>
+			<li><a class="nav-link" href="<?= base_url("profile") ?>"><i class="fas fa-user-circle"></i> <span>Profil Saya</span></a></li>
 		</ul>
 
 	</aside>

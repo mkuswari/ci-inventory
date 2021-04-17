@@ -8,6 +8,7 @@ class Supplier extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Supplier_model');
+		is_login();
 	}
 
 	public function index()

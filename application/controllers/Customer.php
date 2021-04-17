@@ -8,6 +8,7 @@ class Customer extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Customer_model');
+		is_login();
 	}
 
 	public function index()
