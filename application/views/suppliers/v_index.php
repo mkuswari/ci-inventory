@@ -20,7 +20,7 @@
 				<section class="section">
 					<div class="section-header d-flex justify-content-between">
 						<h1><?= $title; ?></h1>
-						<a href="<?= base_url("item/create") ?>" class="btn btn-primary btn-lg">Tambah Supplier</a>
+						<a href="<?= base_url("supplier/create") ?>" class="btn btn-primary btn-lg">Tambah Supplier</a>
 					</div>
 					<!-- alert flashdata -->
 					<div class="flash-data" data-flashdata="<?= $this->session->flashdata('message'); ?>"></div>
@@ -36,12 +36,12 @@
 													<th class="text-center">
 														No
 													</th>
+													<th width="150">Gambar</th>
 													<th>Kode Supplier</th>
 													<th>Nama Supplier</th>
 													<th>E-mail Supplier</th>
 													<th>No HP Supplier</th>
 													<th>Alamat Supplier</th>
-													<th>Gambar</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
@@ -50,14 +50,15 @@
 												<?php foreach ($suppliers as $supplier) : ?>
 													<tr>
 														<td><?= $no++; ?></td>
+														<td>
+															<img src="<?= base_url("assets/uploads/suppliers/" . $supplier["supplier_image"]) ?>" width="100%">
+														</td>
 														<td><?= $supplier["supplier_code"] ?></td>
 														<td><?= $supplier["supplier_name"] ?></td>
 														<td><?= $supplier["supplier_email"] ?></td>
 														<td><?= $supplier["supplier_phone"] ?></td>
 														<td><?= $supplier["supplier_address"] ?></td>
-														<td>
-															<img src="<?= base_url("assets/uploads/suppliers/" . $supplier["supplier_image"]) ?>" width="50">
-														</td>
+
 														<td>
 															<!-- <a href="" class="btn btn-icon btn-info"><i class="fas fa-eye"></i></a> -->
 															<a href="<?= base_url("supplier/update/" . $supplier["id_supplier"]) ?>" class="btn btn-icon btn-warning"><i class="fas fa-pencil-alt"></i></a>

@@ -36,6 +36,7 @@
 													<th class="text-center">
 														No
 													</th>
+													<th width="150">Gambar</th>
 													<th>Kode Barang</th>
 													<th>Nama Barang</th>
 													<th>Stock</th>
@@ -43,7 +44,7 @@
 													<th>Harga</th>
 													<th>Deskripsi</th>
 													<th>Kategori</th>
-													<th>Gambar</th>
+
 													<th>Aksi</th>
 												</tr>
 											</thead>
@@ -52,16 +53,16 @@
 												<?php foreach ($items as $item) : ?>
 													<tr>
 														<td><?= $no++; ?></td>
+														<td>
+															<img src="<?= base_url("assets/uploads/items/" . $item["item_image"]) ?>" width="100%">
+														</td>
 														<td><?= $item["item_code"] ?></td>
 														<td><?= $item["item_name"] ?></td>
 														<td><?= $item["item_stock"] ?></td>
 														<td><?= $item["unit_name"] ?></td>
-														<td><?= $item["item_price"] ?></td>
+														<td><?= $item["item_price"] ?> / <?= $item["unit_name"] ?></td>
 														<td><?= $item["item_description"] ?></td>
 														<td><?= $item["category_name"] ?></td>
-														<td>
-															<img src="<?= base_url("assets/uploads/items/" . $item["item_image"]) ?>" width="50">
-														</td>
 														<td>
 															<!-- <a href="" class="btn btn-icon btn-info"><i class="fas fa-eye"></i></a> -->
 															<a href="<?= base_url("item/update/" . $item["id_item"]) ?>" class="btn btn-icon btn-warning"><i class="fas fa-pencil-alt"></i></a>

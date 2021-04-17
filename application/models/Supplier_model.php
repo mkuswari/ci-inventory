@@ -38,7 +38,7 @@ class Supplier_model extends CI_Model
 	public function makeSupplierCode()
 	{
 		$this->db->select('RIGHT(suppliers.supplier_code, 2) as supplier_code', FALSE);
-		$this->db->order_by('item_code', 'DESC');
+		$this->db->order_by('supplier_code', 'DESC');
 		$this->db->limit(1);
 		$query = $this->db->get("suppliers");
 		if ($query->num_rows() <> 0) {
