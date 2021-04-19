@@ -78,20 +78,11 @@
 														</div>
 													</div>
 												</div>
-												<div class="row">
-													<div class="col-6">
-														<div class="form-group">
-															<label for="item_stock">Stok Barang</label>
-															<input type="number" class="form-control <?= form_error('item_stock') ? 'is-invalid' : ''; ?>" name="item_stock" id="item_stock" placeholder="Stok Barang" value="<?= $item["item_stock"] ?>">
-														</div>
-														<?= form_error('item_stock', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
-													</div>
-													<div class="col-6">
-														<label for="item_stock_min">Jumlah Stok Minimal</label>
-														<input type="number" class="form-control <?= form_error('item_stock_min') ? 'is-invalid' : ''; ?>" name="item_stock_min" id="item_stock_min" placeholder="Stok Minimal Barang" value="<?= $item["item_stock_min"] ?>">
-														<?= form_error('item_stock_min', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
-													</div>
+												<div class="form-group">
+													<label for="item_stock">Stok Barang</label>
+													<input type="number" class="form-control <?= form_error('item_stock') ? 'is-invalid' : ''; ?>" name="item_stock" id="item_stock" placeholder="Stok Barang" value="<?= $item["item_stock"] ?>">
 												</div>
+												<?= form_error('item_stock', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
 												<div class="form-group">
 													<label for="item_price">Harga Barang</label>
 													<input type="number" class="form-control <?= form_error('item_price') ? 'is-invalid' : ''; ?>" name="item_price" id="item_price" placeholder="Harga Barang" value="<?= $item["item_price"] ?>">

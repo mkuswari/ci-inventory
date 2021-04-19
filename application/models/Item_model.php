@@ -34,7 +34,6 @@ class Item_model extends CI_Model
 		$this->db->set("item_name", $itemCode["item_name"]);
 		$this->db->set("item_image", $itemCode["item_image"]);
 		$this->db->set("item_stock", $itemCode["item_stock"]);
-		$this->db->set("item_stock_min", $itemCode["item_stock_min"]);
 		$this->db->set("item_price", $itemCode["item_price"]);
 		$this->db->set("item_description", $itemCode["item_description"]);
 		$this->db->where("id_item", $id);

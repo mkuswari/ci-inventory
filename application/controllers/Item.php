@@ -60,7 +60,6 @@ class Item extends CI_Controller
 				"item_name" => $this->input->post("item_name"),
 				"item_image" => $itemImage,
 				"item_stock" => $this->input->post("item_stock"),
-				"item_stock_min" => $this->input->post("item_stock_min"),
 				"item_price" => $this->input->post("item_price"),
 				"item_description" => $this->input->post("item_description")
 			];
@@ -112,7 +111,6 @@ class Item extends CI_Controller
 				"item_name" => $this->input->post("item_name"),
 				"item_image" => $itemImage,
 				"item_stock" => $this->input->post("item_stock"),
-				"item_stock_min" => $this->input->post("item_stock_min"),
 				"item_price" => $this->input->post("item_price"),
 				"item_description" => $this->input->post("item_description")
 			];
@@ -143,7 +141,6 @@ class Item extends CI_Controller
 		$this->form_validation->set_rules('item_code', 'Kode Barang', 'required');
 		$this->form_validation->set_rules('item_name', 'Nama Barang', 'required');
 		$this->form_validation->set_rules('item_stock', 'Stok Barang', 'required');
-		$this->form_validation->set_rules('item_stock_min', 'Stok Minimal Barang', 'required');
 		$this->form_validation->Set_rules('item_price', 'Harga Barang', 'required');
 	}
 }

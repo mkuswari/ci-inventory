@@ -61,19 +61,10 @@
 													<label for="item_image">Gambar Barang</label>
 													<input type="file" class="form-control" name="item_image" id="item_image">
 												</div>
-												<div class="row">
-													<div class="col-6">
-														<div class="form-group">
-															<label for="item_stock">Stok Barang</label>
-															<input type="number" class="form-control <?= form_error('item_stock') ? 'is-invalid' : ''; ?>" name="item_stock" id="item_stock" placeholder="Stok Barang">
-															<?= form_error('item_stock', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
-														</div>
-													</div>
-													<div class="col-6">
-														<label for="item_stock_min">Jumlah Stok Minimal</label>
-														<input type="number" class="form-control <?= form_error('item_stock_min') ? 'is-invalid' : ''; ?>" name="item_stock_min" id="item_stock_min" placeholder="Stok Minimal Barang">
-														<?= form_error('item_stock_min', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
-													</div>
+												<div class="form-group">
+													<label for="item_stock">Stok Barang</label>
+													<input type="number" class="form-control <?= form_error('item_stock') ? 'is-invalid' : ''; ?>" name="item_stock" id="item_stock" placeholder="Stok Barang">
+													<?= form_error('item_stock', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
 												</div>
 												<div class="form-group">
 													<label for="item_price">Harga Barang</label>

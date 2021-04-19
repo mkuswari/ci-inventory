@@ -8,20 +8,20 @@
 		</div>
 		<ul class="sidebar-menu">
 			<li class="menu-header">Dashboard</li>
-			<li class="active">
+			<li class="<?= ($this->uri->segment(1) == 'dashboard') ? 'active' : '' ?>">
 				<a class="nav-link" href="<?= base_url('dashboard'); ?>"><i class="fas fa-fire"></i> <span>Dashboard</span></a>
 			</li>
 			<li class="menu-header">Master Data</li>
 			<li class="dropdown">
 				<a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-box-open"></i> <span>Kelola Barang</span></a>
 				<ul class="dropdown-menu">
-					<li><a class="nav-link" href="<?= base_url("item") ?>">Item</a></li>
-					<li><a class="nav-link" href="<?= base_url("category") ?>">Kategori</a></li>
-					<li><a class="nav-link" href="<?= base_url("unit") ?>">Satuan</a></li>
+					<li class="<?= ($this->uri->segment(1) == 'item') ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url("item") ?>">Item</a></li>
+					<li class="<?= ($this->uri->segment(1) == 'category') ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url("category") ?>">Kategori</a></li>
+					<li class="<?= ($this->uri->segment(1) == 'unit') ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url("unit") ?>">Satuan</a></li>
 				</ul>
 			</li>
-			<li><a class="nav-link" href="<?= base_url("supplier") ?>"><i class="fas fa-truck-moving"></i> <span>Kelola Supplier</span></a></li>
-			<li><a class="nav-link" href="<?= base_url("customer") ?>"><i class="fas fa-users"></i> <span>Kelola Customer</span></a></li>
+			<li class="<?= ($this->uri->segment(1) == 'supplier') ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url("supplier") ?>"><i class="fas fa-truck-moving"></i> <span>Kelola Supplier</span></a></li>
+			<li class="<?= ($this->uri->segment(1) == 'customer') ? 'active' : '' ?>"><a class="nav-link" href="<?= base_url("customer") ?>"><i class="fas fa-users"></i> <span>Kelola Customer</span></a></li>
 			<li class="dropdown">
 				<a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Kelola Transaksi</span></a>
 				<ul class="dropdown-menu">

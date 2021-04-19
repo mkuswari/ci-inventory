@@ -23,4 +23,5 @@
 	<!-- Template CSS -->
 	<link rel="stylesheet" href="<?= base_url("assets/css/style.css") ?>">
 	<link rel="stylesheet" href="<?= base_url("assets/css/components.css") ?>">
+	<!-- <script src="<?= base_url("assets/modules/jquery.min.js"); ?>"></script> -->
 </head>
