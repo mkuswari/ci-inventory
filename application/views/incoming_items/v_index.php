@@ -55,8 +55,7 @@
 														<td><?= $incoming_item["item_name"] ?></td>
 														<td><?= $incoming_item["incoming_item_qty"] ?></td>
 														<td>
-															<a href="<?= base_url("incomingitem/update/" . $incoming_item["id_incoming_item"]) ?>" class="btn btn-icon btn-warning"><i class="fas fa-pencil-alt"></i></a>
-															<a href="<?= base_url("incomingitem/delete/" . $incoming_item["id_incoming_item"]) ?>" class="btn btn-icco btn-danger btn-delete"><i class="fas fa-trash"></i></a>
+															<a href="<?= base_url("incomingitem/delete/" . $incoming_item["id_incoming_items"]) ?>" class="btn btn-icco btn-danger btn-delete"><i class="fas fa-trash"></i></a>
 														</td>
 													</tr>
 												<?php endforeach; ?>

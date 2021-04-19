@@ -20,7 +20,6 @@ class IncomingItem_model extends CI_Model
 		$this->db->where("id_incoming_items", $id);
 		return $this->db->get()->row_array();
 	}
-
 	public function makeIncomingItemCode()
 	{
 		$this->db->select('RIGHT(incoming_items.incoming_item_code, 2) as incoming_item_code', FALSE);
@@ -38,4 +37,16 @@ class IncomingItem_model extends CI_Model
 		$showCode = "TRX-M" . $date . $limit;
 		return $showCode;
 	}
+
+	public function insertNewIncomingItem($incomingItemData)
+	{
+		$this->db->insert("incoming_items", $incomingItemData);
+	}
+
+	public function deleteSelectedIncomingItem($id)
+	{
+		$this->db->where("id_incoming_items", $id);
+		$this->db->delete("incoming_items");
+	}
+
 }

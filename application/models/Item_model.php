@@ -67,4 +67,10 @@ class Item_model extends CI_Model
 		$showCode = "BRG" . $date . $limit;
 		return $showCode;
 	}
+
+	public function cekItemStock($itemId)
+	{
+		$this->db->join("units", "items.id_unit = units.id_unit");
+		return $this->db->get_where("items", ["id_item" => $itemId])->row_array();
+	}
 }

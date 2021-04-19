@@ -134,6 +134,13 @@ class Item extends CI_Controller
 		redirect('item');
 	}
 
+	public function cekItemStock($id)
+	{
+		$itemId = encode_php_tags($id);
+		$query = $this->Item_model->cekItemStock($itemId);
+		output_json($query);
+	}
+
 	private function _validateFormRequest()
 	{
 		$this->form_validation->set_rules('id_category', 'Kategori', 'required');

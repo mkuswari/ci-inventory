@@ -40,31 +40,35 @@
 															<option value="<?= $supplier["id_supplier"] ?>"><?= $supplier["supplier_code"] ?> | <?= $supplier["supplier_name"] ?></option>
 														<?php endforeach; ?>
 													</select>
-													<?= form_error('id_category', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
+													<?= form_error('id_supplier', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
 												</div>
 												<div class="form-group">
 													<label for="id_items">Barang</label>
 													<select name="id_items" id="ItemId" class="form-control select2">
 														<option value="" disabled selected>--Pilih Barang--</option>
 														<?php foreach ($items as $item) : ?>
-															<option value="<?= $item["id_item"] ?>" data-stock="<?= $item["item_stock"] ?>"><?= $item["item_code"] ?> | <?= $item["item_name"] ?></option>
+															<option value="<?= $item["id_item"] ?>"><?= $item["item_code"] ?> | <?= $item["item_name"] ?></option>
 														<?php endforeach; ?>
 													</select>
-													<?= form_error('id_category', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
+													<?= form_error('id_items', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
 												</div>
 												<div class="form-group">
 													<label for="item_stock">Stock Barang</label>
-													<input type="number" class="form-control <?= form_error('item_stock') ? 'is-invalid' : ''; ?>" name="item_stock" id="ItemStock" placeholder="Stock Barang" readonly>
-													<?= form_error('item_stock', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
+													<input type="number" class="form-control" name="item_stock" id="ItemStock" placeholder="Stock Barang" readonly>
 												</div>
 												<div class="form-group">
 													<label for="incoming_item_qty">Jumlah Stok Masuk</label>
-													<input type="number" class="form-control <?= form_error('incoming_item_qty') ? 'is-invalid' : '' ?>" name="incoming_item_qty" id="IncomingItemQty" placeholder="Jumlah Stok Masuk">
+													<div class="input-group">
+														<input type="number" class="form-control <?= form_error('incoming_item_qty') ? 'is-invalid' : '' ?>" name="incoming_item_qty" id="IncomingItemQty" placeholder="Jumlah Stok Masuk">
+														<div class="input-group-append">
+															<span class="input-group-text" id="unitName">Satuan</span>
+														</div>
+														<?= form_error('incoming_item_qty', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
+													</div>
 												</div>
 												<div class="form-group">
 													<label for="item_stock_total">Jumlah Total Stock</label>
-													<input type="number" class="form-control <?= form_error('item_stock_total') ? 'is-invalid' : ''; ?>" name="item_stock_total" id="ItemStockTotal" placeholder="Jumlah Total Stock" readonly>
-													<?= form_error('item_stock_total', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
+													<input type="number" class="form-control" name="item_stock_total" id="ItemStockTotal" placeholder="Jumlah Total Stock" readonly>
 												</div>
 												<hr>
 												<div class="form-action">
@@ -92,18 +96,39 @@
 	<!-- ./scripts -->
 	<script>
 		$(document).ready(function() {
-			$('#ItemId').change(function(e) {
-				e.preventDefault();
-				var id = $(this).attr('id');
-				var stock = $("#" + id + " option:selected").data('stock');
-				$('#ItemStock').val(stock);
-				var stockIn = $('#IncomingItemQty').val();
-				var totalStock = stock + stockIn;
-				$('#ItemStockTotal').val(totalStock);
-			})
+
+			var total = null;
+			var dataItem = <?= json_encode($items) ?>;
+				$('#ItemId').change(function(e) {
+					e.preventDefault();
+					var value = $(this).val();
+					var barang = dataItem.filter(item => item.id_item == value);
+					if (barang.length == 0) {
+						return
+					}
+					barang = barang[0];
+					var stock = barang.item_stock;
+					$('#ItemStock').val(stock);
+					var stockIn = $('#IncomingItemQty').val();
+					var totalStock = stock + stockIn;
+					total = totalStock;
+					$('#ItemStockTotal').val(totalStock);
+
+					var unitName = barang.unit_name;
+					$('#unitName').text(unitName);
+
+				})
+
+			$('#IncomingItemQty').keyup(function() {
+				var value = $(this).val();
+				if (!value)
+					value = 0
+				$('#ItemStockTotal').val(parseInt(value) + parseInt(total));
+			});
 
 		});
 	</script>
+
 
 </body>
 
