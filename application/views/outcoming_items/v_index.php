@@ -40,24 +40,24 @@
 													<th>Kode Transaksi</th>
 													<th>Kode Barang</th>
 													<th>Nama Barang</th>
-													<th>Jumlah Masuk</th>
-													<th>Supplier</th>
+													<th>Jumlah Keluar</th>
+													<th>Customer</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php $no = 1; ?>
-												<?php foreach ($incoming_items as $incoming_item) : ?>
+												<?php foreach ($outcoming_items as $outcoming_item) : ?>
 													<tr>
 														<td><?= $no++; ?></td>
-														<td><?= $incoming_item["incoming_item_date"] ?></td>
-														<td><?= $incoming_item["incoming_item_code"] ?></td>
-														<td><?= $incoming_item["item_code"] ?></td>
-														<td><?= $incoming_item["item_name"] ?></td>
-														<td><?= $incoming_item["incoming_item_qty"] ?></td>
-														<td><?= $incoming_item["supplier_name"] ?></td>
+														<td><?= $outcoming_item["outcoming_item_date"] ?></td>
+														<td><?= $outcoming_item["outcoming_item_code"] ?></td>
+														<td><?= $outcoming_item["item_code"] ?></td>
+														<td><?= $outcoming_item["item_name"] ?></td>
+														<td><?= $outcoming_item["outcoming_item_qty"] ?></td>
+														<td><?= $outcoming_item["customer_name"] ?></td>
 														<td>
-															<a href="<?= base_url("incomingitem/delete/" . $incoming_item["id_incoming_items"]) ?>" class="btn btn-icco btn-danger btn-delete"><i class="fas fa-trash"></i></a>
+															<a href="<?= base_url("outcomingitem/delete/" . $outcoming_item["id_outcoming_items"]) ?>" class="btn btn-icco btn-danger btn-delete"><i class="fas fa-trash"></i></a>
 														</td>
 													</tr>
 												<?php endforeach; ?>

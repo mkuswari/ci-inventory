@@ -34,7 +34,7 @@ class IncomingItem extends CI_Controller
 		$this->form_validation->set_rules('incoming_item_qty', 'Jumlah Stok Masuk', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view("incoming_items/v_create", $data);
-		}else{
+		} else {
 			$incomingItemData = [
 				"id_items" => $this->input->post("id_items"),
 				"id_supplier" => $this->input->post("id_supplier"),

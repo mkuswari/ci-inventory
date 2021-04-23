@@ -48,5 +48,4 @@ class IncomingItem_model extends CI_Model
 		$this->db->where("id_incoming_items", $id);
 		$this->db->delete("incoming_items");
 	}
-
 }
