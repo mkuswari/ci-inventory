@@ -63,8 +63,8 @@
 														<div class="input-group-append">
 															<span class="input-group-text" id="unitName">Satuan</span>
 														</div>
-														<?= form_error('outcoming_item_qty', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
 													</div>
+														<div class="invalid-feedback" id="errorValue">Jumlah Barang Keluar lebih besar dari stok barang</div>
 												</div>
 												<div class="form-group">
 													<label for="item_stock_total">Sisa Stock Barang</label>
@@ -97,7 +97,6 @@
 	<script>
 		$(document).ready(function() {
 
-			var total = null;
 			var dataItem = <?= json_encode($items) ?>;
 			$('#ItemId').change(function(e) {
 				e.preventDefault();
@@ -108,10 +107,26 @@
 				}
 				barang = barang[0];
 				var stock = barang.item_stock;
+
 				$('#ItemStock').val(stock);
 				var stockOut = $('#OutcomingItemQty').val();
+				if (!stockOut) {
+					stockOut = 0;
+				}
+
+				stockOut = parseInt(stockOut);
+				if (parseInt(stock) < stockOut) {
+					$('#errorValue').show();
+					$('button[type="submit"]').prop('disabled',true);
+					$('#ItemStockTotal').val(stock);
+					return
+				}else{
+					$('#errorValue').hide();
+					$('button[type="submit"]').prop('disabled',false);
+				}
+
 				var totalStock = stock - stockOut;
-				total = totalStock;
+				totalStock = parseInt(totalStock);
 				$('#ItemStockTotal').val(totalStock);
 
 				var unitName = barang.unit_name;
@@ -120,11 +135,28 @@
 			})
 
 			$('#OutcomingItemQty').keyup(function() {
+				var total = $('#ItemStock').val();
 				var value = $(this).val();
+
+				if (!total) {
+					total = 0;
+				}
+
+				total = parseInt(total);
+
 				if (!value)
 					value = 0
-				// $('#ItemStockTotal').val(parseInt(value) - parseInt(total));
-				$('#ItemStockTotal').val(value - total);
+				value = parseInt(value);
+				if (value > total) {
+					$('#errorValue').show();
+					$('button[type="submit"]').prop('disabled',true);
+					$('#ItemStockTotal').val(total);
+					return
+				}else{
+					$('#errorValue').hide();
+					$('button[type="submit"]').prop('disabled',false);
+				}
+				$('#ItemStockTotal').val(parseInt(total) - parseInt(value));
 			});
 
 		});

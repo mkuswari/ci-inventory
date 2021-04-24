@@ -57,7 +57,7 @@
 														<td><?= $outcoming_item["outcoming_item_qty"] ?></td>
 														<td><?= $outcoming_item["customer_name"] ?></td>
 														<td>
-															<a href="<?= base_url("outcomingitem/delete/" . $outcoming_item["id_outcoming_items"]) ?>" class="btn btn-icco btn-danger btn-delete"><i class="fas fa-trash"></i></a>
+															<a href="<?= base_url("outcomingitem/delete/" . $outcoming_item["id_outcoming_item"]) ?>" class="btn btn-icco btn-danger btn-delete"><i class="fas fa-trash"></i></a>
 														</td>
 													</tr>
 												<?php endforeach; ?>

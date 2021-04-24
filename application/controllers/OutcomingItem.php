@@ -30,15 +30,28 @@ class OutcomingItem extends CI_Controller
 			"customers" => $this->Customer_model->getAllCustomers()
 		];
 
+		$this->form_validation->set_rules('id_customer', 'Customer', 'required');
+		$this->form_validation->set_rules('id_items', 'Barang', 'required');
+		$this->form_validation->set_rules('outcoming_item_qty', 'Jumlah Barang Keluar', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view("outcoming_items/v_create", $data);
 		} else {
 			$outcomingItemData = [
-				// 
+				"id_items" => $this->input->post("id_items"),
+				"id_customer" => $this->input->post("id_customer"),
+				"outcoming_item_code" => $this->input->post("outcoming_item_code"),
+				"outcoming_item_qty" => $this->input->post("outcoming_item_qty")
 			];
 			$this->OutcomingItem_model->insertNewOutcomingItem($outcomingItemData);
 			$this->session->set_flashdata('message', 'Ditambah');
 			redirect('outcomingitem');
 		}
+	}
+
+	public function delete($id)
+	{
+		$this->OutcomingItem_model->deleteSelectedOutcomingItem($id);
+		$this->session->set_flashdata('message', 'Dihapus');
+		redirect('outcomingitem');
 	}
 }

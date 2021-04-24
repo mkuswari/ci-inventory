@@ -11,6 +11,17 @@ class OutcomingItem_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function insertNewOutcomingItem($outcomingItemData)
+	{
+		$this->db->insert("outcoming_items", $outcomingItemData);
+	}
+
+	public function deleteSelectedOutcomingItem($id)
+	{
+		$this->db->where("id_outcoming_item", $id);
+		$this->db->delete("outcoming_items");
+	}
+
 	public function makeOutcomingItemCode()
 	{
 		$this->db->select('RIGHT(outcoming_items.outcoming_item_code, 2) as outcoming_item_code', FALSE);
