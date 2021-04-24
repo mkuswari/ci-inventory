@@ -1,93 +1,361 @@
-CREATE TABLE `users` (
-  `id_user` int UNIQUE PRIMARY KEY,
-  `user_name` varchar(100),
-  `user_email` varchar(100) UNIQUE NOT NULL,
-  `user_phone` char(16),
-  `user_address` text,
-  `user_avatar` varchar(255) DEFAULT "default.jpg",
-  `user_password` varchar(255),
-  `user_role` ENUM ('admin', 'staff'),
-  `created_at` timestamp
-);
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 24, 2021 at 12:52 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.4.16
 
-CREATE TABLE `suppliers` (
-  `id_supplier` int UNIQUE PRIMARY KEY,
-  `supplier_code` varchar(64) UNIQUE NOT NULL,
-  `supplier_name` varchar(100) NOT NULL,
-  `supplier_email` varchar(100) UNIQUE NOT NULL,
-  `supplier_phone` char(16) UNIQUE,
-  `supplier_address` text,
-  `supplier_image` varchar(255) DEFAULT "default.jpg",
-  `created_at` timestamp
-);
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-CREATE TABLE `customers` (
-  `id_customer` int UNIQUE PRIMARY KEY,
-  `customer_code` varchar(64) UNIQUE NOT NULL,
-  `customer_name` varchar(100) NOT NULL,
-  `customer_email` varchar(100) UNIQUE NOT NULL,
-  `customer_phone` char(16),
-  `customer_address` text,
-  `customer_image` varchar(2255) DEFAULT "default.jpg"
-);
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `inventory_app`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
 
 CREATE TABLE `categories` (
-  `id_category` int UNIQUE PRIMARY KEY,
-  `category_code` varchar(64) UNIQUE,
+  `id_category` int(11) NOT NULL,
   `category_name` varchar(100) NOT NULL,
-  `category_description` text,
-  `created_at` timestamp
-);
+  `category_description` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `units` (
-  `id_unit` int UNIQUE PRIMARY KEY,
-  `unit_code` varchar(64) UNIQUE,
-  `unit_name` varchar(100) NOT NULL,
-  `unit_description` text,
-  `created_at` timestamp
-);
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id_category`, `category_name`, `category_description`, `created_at`) VALUES
+(1, 'Elektronik', '', '2021-04-23 21:19:36'),
+(2, 'Makanan & Minuman', '', '2021-04-23 21:19:43'),
+(3, 'Bahan Baku', '', '2021-04-23 21:19:50'),
+(4, 'ATK', '', '2021-04-23 21:20:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+
+CREATE TABLE `customers` (
+  `id_customer` int(11) NOT NULL,
+  `customer_code` varchar(64) NOT NULL,
+  `customer_name` varchar(100) NOT NULL,
+  `customer_email` varchar(100) NOT NULL,
+  `customer_phone` char(16) DEFAULT NULL,
+  `customer_address` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id_customer`, `customer_code`, `customer_name`, `customer_email`, `customer_phone`, `customer_address`, `created_at`) VALUES
+(1, 'CUS24042021001', 'Site Customer', 'customer@mail.com', '081939448487', 'Jl. Bunga Matahari, No.11 Gomong Lama, Mataram.', '2021-04-24 10:37:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `incoming_items`
+--
+
+CREATE TABLE `incoming_items` (
+  `id_incoming_items` int(11) NOT NULL,
+  `id_items` int(11) DEFAULT NULL,
+  `id_supplier` int(11) DEFAULT NULL,
+  `incoming_item_code` varchar(64) NOT NULL,
+  `incoming_item_qty` int(11) NOT NULL,
+  `incoming_item_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Triggers `incoming_items`
+--
+DELIMITER $$
+CREATE TRIGGER `barang_masuk` AFTER INSERT ON `incoming_items` FOR EACH ROW BEGIN
+	UPDATE items SET item_stock=item_stock+NEW.incoming_item_qty
+    WHERE id_item = NEW.id_items;
+END
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
 
 CREATE TABLE `items` (
-  `id_item` int UNIQUE PRIMARY KEY,
-  `id_category` int,
-  `id_unit` int,
-  `item_code` varchar(64) UNIQUE,
+  `id_item` int(11) NOT NULL,
+  `id_category` int(11) DEFAULT NULL,
+  `id_unit` int(11) DEFAULT NULL,
+  `item_code` varchar(64) NOT NULL,
   `item_name` varchar(128) NOT NULL,
   `item_image` varchar(255) NOT NULL,
   `item_stock` int(11) NOT NULL,
   `item_stock_min` int(11) NOT NULL,
-  `item_price` float,
-  `item_description` text,
-  `created_at` timestamp
-);
+  `item_price` float NOT NULL,
+  `item_description` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE `incoming_items` (
-  `id_incoming_items` int UNIQUE PRIMARY KEY,
-  `id_items` int,
-  `id_supplier` int,
-  `incoming_item_code` varchar(64) UNIQUE NOT NULL,
-  `incoming_item_qty` int(11) NOT NULL,
-  `created_at` timestamp
-);
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id_item`, `id_category`, `id_unit`, `item_code`, `item_name`, `item_image`, `item_stock`, `item_stock_min`, `item_price`, `item_description`, `created_at`) VALUES
+(1, 1, 3, 'BRG23042021001', 'Monitor SPC Pro SM-24', 'BRG23042021001.jpeg', 10, 0, 1400000, 'Monitor SPC PRO SM-24, Brand Lokal dengan Kualitas Mantap', '2021-04-23 21:21:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outcoming_items`
+--
 
 CREATE TABLE `outcoming_items` (
-  `id_outcoming_item` int UNIQUE PRIMARY KEY,
-  `id_items` int,
-  `id_customer` int,
-  `outcoming_item_code` varchar(64) UNIQUE,
-  `outcoming_item_qty` int(11),
-  `outcoming_item_price` float,
-  `created_at` timestamp
-);
+  `id_outcoming_item` int(11) NOT NULL,
+  `id_items` int(11) DEFAULT NULL,
+  `id_customer` int(11) DEFAULT NULL,
+  `outcoming_item_code` varchar(64) NOT NULL,
+  `outcoming_item_qty` int(11) NOT NULL,
+  `outcoming_item_price` float NOT NULL,
+  `outcoming_item_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE `items` ADD FOREIGN KEY (`id_category`) REFERENCES `categories` (`id_category`);
+--
+-- Triggers `outcoming_items`
+--
+DELIMITER $$
+CREATE TRIGGER `barang_keluar` AFTER INSERT ON `outcoming_items` FOR EACH ROW BEGIN
+	UPDATE items SET item_stock=items_stock-NEW.outcoming_item_qty
+    WHERE id_item = NEW.id_items;
+END
+$$
+DELIMITER ;
 
-ALTER TABLE `items` ADD FOREIGN KEY (`id_unit`) REFERENCES `units` (`id_unit`);
+-- --------------------------------------------------------
 
-ALTER TABLE `incoming_items` ADD FOREIGN KEY (`id_items`) REFERENCES `items` (`id_item`);
+--
+-- Table structure for table `suppliers`
+--
 
-ALTER TABLE `incoming_items` ADD FOREIGN KEY (`id_supplier`) REFERENCES `suppliers` (`id_supplier`);
+CREATE TABLE `suppliers` (
+  `id_supplier` int(11) NOT NULL,
+  `supplier_code` varchar(64) NOT NULL,
+  `supplier_name` varchar(100) NOT NULL,
+  `supplier_email` varchar(100) NOT NULL,
+  `supplier_phone` char(16) DEFAULT NULL,
+  `supplier_address` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE `outcoming_items` ADD FOREIGN KEY (`id_items`) REFERENCES `items` (`id_item`);
+--
+-- Dumping data for table `suppliers`
+--
 
-ALTER TABLE `outcoming_items` ADD FOREIGN KEY (`id_customer`) REFERENCES `customers` (`id_customer`);
+INSERT INTO `suppliers` (`id_supplier`, `supplier_code`, `supplier_name`, `supplier_email`, `supplier_phone`, `supplier_address`, `created_at`) VALUES
+(1, 'SPL24042021001', 'Site Supplier', 'supplier@mail.com', '081939448487', 'Jl. Bunga Matahari, No.11 Gomong Lama, Mataram.', '2021-04-24 10:37:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `units`
+--
+
+CREATE TABLE `units` (
+  `id_unit` int(11) NOT NULL,
+  `unit_name` varchar(100) NOT NULL,
+  `unit_description` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `units`
+--
+
+INSERT INTO `units` (`id_unit`, `unit_name`, `unit_description`, `created_at`) VALUES
+(1, 'Bungkus', '', '2021-04-23 21:18:37'),
+(2, 'Kotak', '', '2021-04-23 21:18:42'),
+(3, 'Pcs', '', '2021-04-23 21:18:48'),
+(4, 'Liter', '', '2021-04-23 21:18:52'),
+(5, 'Kilogram', '', '2021-04-23 21:19:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id_user` int(11) NOT NULL,
+  `user_name` varchar(100) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `user_phone` char(16) DEFAULT NULL,
+  `user_address` text DEFAULT NULL,
+  `user_avatar` varchar(255) DEFAULT 'default.jpg',
+  `user_password` varchar(255) NOT NULL,
+  `user_role` enum('admin','staff') DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id_user`, `user_name`, `user_email`, `user_phone`, `user_address`, `user_avatar`, `user_password`, `user_role`, `created_at`) VALUES
+(1, 'Site Administrator', 'admin@mail.com', '081939448487', 'Jl. Bunga Matahari, No.11 Gomong Lama, Mataram.', 'default.jpg', '$2y$10$/ePeCDWkJXlcHhqjD4vje.zO6r2ejISJTJ4AS4mtLt1JIDBNwoFRu', 'admin', '2021-04-24 10:36:22'),
+(2, 'Site Staff', 'staff@mail.com', '085156031903', 'Jl. Bunga Matahari, No.11 Gomong Lama, Mataram', 'default.jpg', '$2y$10$ychqFGRIZFy5UzR0FIrxV.kHbpSZLIK7Dnabw1NUh6eED/iCbE0Uu', 'staff', '2021-04-24 10:39:00');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id_category`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+  ADD PRIMARY KEY (`id_customer`);
+
+--
+-- Indexes for table `incoming_items`
+--
+ALTER TABLE `incoming_items`
+  ADD PRIMARY KEY (`id_incoming_items`),
+  ADD KEY `id_items` (`id_items`),
+  ADD KEY `id_supplier` (`id_supplier`);
+
+--
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id_item`),
+  ADD KEY `id_category` (`id_category`),
+  ADD KEY `id_unit` (`id_unit`);
+
+--
+-- Indexes for table `outcoming_items`
+--
+ALTER TABLE `outcoming_items`
+  ADD PRIMARY KEY (`id_outcoming_item`),
+  ADD KEY `id_items` (`id_items`),
+  ADD KEY `id_customer` (`id_customer`);
+
+--
+-- Indexes for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  ADD PRIMARY KEY (`id_supplier`);
+
+--
+-- Indexes for table `units`
+--
+ALTER TABLE `units`
+  ADD PRIMARY KEY (`id_unit`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `incoming_items`
+--
+ALTER TABLE `incoming_items`
+  MODIFY `id_incoming_items` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `outcoming_items`
+--
+ALTER TABLE `outcoming_items`
+  MODIFY `id_outcoming_item` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `suppliers`
+--
+ALTER TABLE `suppliers`
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `units`
+--
+ALTER TABLE `units`
+  MODIFY `id_unit` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `incoming_items`
+--
+ALTER TABLE `incoming_items`
+  ADD CONSTRAINT `incoming_items_ibfk_1` FOREIGN KEY (`id_items`) REFERENCES `items` (`id_item`),
+  ADD CONSTRAINT `incoming_items_ibfk_2` FOREIGN KEY (`id_supplier`) REFERENCES `suppliers` (`id_supplier`);
+
+--
+-- Constraints for table `items`
+--
+ALTER TABLE `items`
+  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`id_category`) REFERENCES `categories` (`id_category`),
+  ADD CONSTRAINT `items_ibfk_2` FOREIGN KEY (`id_unit`) REFERENCES `units` (`id_unit`);
+
+--
+-- Constraints for table `outcoming_items`
+--
+ALTER TABLE `outcoming_items`
+  ADD CONSTRAINT `outcoming_items_ibfk_1` FOREIGN KEY (`id_items`) REFERENCES `items` (`id_item`),
+  ADD CONSTRAINT `outcoming_items_ibfk_2` FOREIGN KEY (`id_customer`) REFERENCES `customers` (`id_customer`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

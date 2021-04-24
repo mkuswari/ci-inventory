@@ -41,7 +41,6 @@
 													<th>E-mail Customer</th>
 													<th>No HP Customer</th>
 													<th>Alamat Customer</th>
-													<th>Gambar</th>
 													<th>Aksi</th>
 												</tr>
 											</thead>
@@ -55,9 +54,6 @@
 														<td><?= $customer["customer_email"] ?></td>
 														<td><?= $customer["customer_phone"] ?></td>
 														<td><?= $customer["customer_address"] ?></td>
-														<td>
-															<img src="<?= base_url("assets/uploads/customers/" . $customer["customer_image"]) ?>" width="50">
-														</td>
 														<td>
 															<!-- <a href="" class="btn btn-icon btn-info"><i class="fas fa-eye"></i></a> -->
 															<a href="<?= base_url("customer/update/" . $customer["id_customer"]) ?>" class="btn btn-icon btn-warning"><i class="fas fa-pencil-alt"></i></a>

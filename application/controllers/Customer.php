@@ -33,28 +33,12 @@ class Customer extends CI_Controller
 			$this->load->view("customers/v_create", $data);
 		} else {
 
-			$customerImage = $_FILES["customer_image"];
-			if ($customerImage) {
-				$config = [
-					"allowed_types" => "jpg|jpeg|png|bmp|gif",
-					"upload_path" => "./assets/uploads/customers/",
-					"file_name" => $this->input->post("customer_code")
-				];
-				$this->load->library("upload", $config);
-				if ($this->upload->do_upload("customer_image")) {
-					$customerImage = $this->upload->data("file_name");
-				} else {
-					return "default.jpg";
-				}
-			}
-
 			$customerData = [
 				"customer_code" => $this->input->post("customer_code"),
 				"customer_name" => $this->input->post("customer_name"),
 				"customer_email" => $this->input->post("customer_email"),
 				"customer_phone" => $this->input->post("customer_phone"),
-				"customer_address" => $this->input->post("customer_address"),
-				"customer_image" => $customerImage,
+				"customer_address" => $this->input->post("customer_address")
 			];
 
 			$this->Customer_model->insertNewCustomer($customerData);
@@ -75,35 +59,12 @@ class Customer extends CI_Controller
 			$this->load->view("customers/v_update", $data);
 		} else {
 
-			$customerImage = $_FILES["customer_image"];
-			if ($customerImage) {
-				$config = [
-					"allowed_types" => "jpg|jpeg|png|bmp|gif",
-					"upload_path" => "./assets/uploads/customers/",
-					"file_name" => $this->input->post("customer_code")
-				];
-				$this->load->library("upload", $config);
-				if ($this->upload->do_upload("customer_image")) {
-					$customer = $this->Customer_model->getCustomerById($id);
-					$oldImage = $customer["customer_image"];
-					if ($oldImage != "default.jpg") {
-						unlink('./assets/uploads/customers/' . $oldImage);
-					}
-					$newImage = $this->upload->data("file_name");
-					$customerImage = $newImage;
-				} else {
-					$customer = $this->Customer_model->getCustomerById($id);
-					$customerImage = $customer["customer_image"];
-				}
-			}
-
 			$customerData = [
 				"customer_code" => $this->input->post("customer_code"),
 				"customer_name" => $this->input->post("customer_name"),
 				"customer_email" => $this->input->post("customer_email"),
 				"customer_phone" => $this->input->post("customer_phone"),
-				"customer_address" => $this->input->post("customer_address"),
-				"customer_image" => $customerImage,
+				"customer_address" => $this->input->post("customer_address")
 			];
 
 			$this->Customer_model->updateSelectedCustomer($customerData, $id);
@@ -114,10 +75,6 @@ class Customer extends CI_Controller
 
 	public function delete($id)
 	{
-		$customer = $this->Customer_model->getCustomerById($id);
-		if (file_exists('./assets/uploads/customers/' . $customer["customer_image"]) && $customer["customer_image"]) {
-			unlink('./assets/uploads/customers/' . $customer["customer_image"]);
-		}
 
 		$this->Customer_model->deleteSelectedCustomer($id);
 		$this->session->set_flashdata('message', 'Dihapus');

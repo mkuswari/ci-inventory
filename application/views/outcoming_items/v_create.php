@@ -110,7 +110,7 @@
 				var stock = barang.item_stock;
 				$('#ItemStock').val(stock);
 				var stockOut = $('#OutcomingItemQty').val();
-				var totalStock = stock + stockOut;
+				var totalStock = stock - stockOut;
 				total = totalStock;
 				$('#ItemStockTotal').val(totalStock);
 
@@ -123,7 +123,8 @@
 				var value = $(this).val();
 				if (!value)
 					value = 0
-				$('#ItemStockTotal').val(parseInt(value) - parseInt(total));
+				// $('#ItemStockTotal').val(parseInt(value) - parseInt(total));
+				$('#ItemStockTotal').val(value - total);
 			});
 
 		});

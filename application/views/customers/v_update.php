@@ -27,8 +27,7 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col-8 mx-auto">
-											<form action="<?= base_url("customer/update/" . $customer["id_customer"]) ?>" method="post" enctype="multipart/form-data">
-												<div class="form-group">
+											<form action="<?= base_url("customer/update/" . $customer["id_customer"]) ?>" method="post">
 													<label for="customer_code">Kode Customer</label>
 													<input type="text" class="form-control" name="customer_code" id="customer_code" placeholder="Kode Customer" value="<?= $customer["customer_code"] ?>" readonly>
 												</div>
@@ -51,17 +50,6 @@
 													<label for="customer_address">Alamat Customer</label>
 													<textarea name="customer_address" id="customer_address" rows="3" class="form-control <?= form_error('customer_address') ? 'is-invalid' : ''; ?>"><?= $customer["customer_address"] ?></textarea>
 													<?= form_error('customer_address', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
-												</div>
-												<div class="form-group">
-													<label for="customer_image">Gambar</label>
-													<div class="row">
-														<div class="col-4">
-															<img src="<?= base_url("assets/uploads/customers/" . $customer["customer_image"]) ?>" width="100%">
-														</div>
-														<div class="col-8">
-															<input type="file" class="form-control" name="customer_image" id="customer_image">
-														</div>
-													</div>
 												</div>
 												<hr>
 												<div class="form-action">

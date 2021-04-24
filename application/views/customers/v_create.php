@@ -52,10 +52,6 @@
 													<textarea name="customer_address" id="customer_address" rows="3" class="form-control <?= form_error('customer_address') ? 'is-invalid' : ''; ?>"></textarea>
 													<?= form_error('customer_address', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
 												</div>
-												<div class="form-group">
-													<label for="customer_image">Gambar</label>
-													<input type="file" class="form-control" name="customer_image" id="customer_image">
-												</div>
 												<hr>
 												<div class="form-action">
 													<button type="submit" class="btn btn-primary btn-lg">Simpan Data</button>

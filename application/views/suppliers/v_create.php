@@ -27,7 +27,7 @@
 								<div class="card-body">
 									<div class="row">
 										<div class="col-8 mx-auto">
-											<form action="<?= base_url("supplier/create") ?>" method="post" enctype="multipart/form-data">
+											<form action="<?= base_url("supplier/create") ?>" method="post">
 												<div class="form-group">
 													<label for="supplier_code">Kode Supplier</label>
 													<input type="text" class="form-control" name="supplier_code" id="supplier_code" placeholder="Kode Supplier" value="<?= $supplier_code ?>" readonly>
@@ -51,10 +51,6 @@
 													<label for="supplier_address">Alamat Supplier</label>
 													<textarea name="supplier_address" id="supplier_address" rows="3" class="form-control <?= form_error('supplier_address') ? 'is-invalid' : ''; ?>"></textarea>
 													<?= form_error('supplier_address', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
-												</div>
-												<div class="form-group">
-													<label for="supplier_image">Gambar</label>
-													<input type="file" class="form-control" name="supplier_image" id="supplier_image">
 												</div>
 												<hr>
 												<div class="form-action">

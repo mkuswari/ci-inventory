@@ -25,8 +25,8 @@
 			<li class="dropdown">
 				<a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Kelola Transaksi</span></a>
 				<ul class="dropdown-menu">
-					<li><a class="nav-link" href="bootstrap-alert.html">Barang Masuk</a></li>
-					<li><a class="nav-link" href="bootstrap-badge.html">Barang Keluar</a></li>
+					<li><a class="nav-link" href="<?= base_url("incomingitem") ?>">Barang Masuk</a></li>
+					<li><a class="nav-link" href="<?= base_url("outcomingitem") ?>">Barang Keluar</a></li>
 				</ul>
 			</li>
 			<li class="menu-header">Laporan</li>

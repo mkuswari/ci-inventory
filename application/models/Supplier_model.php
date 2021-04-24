@@ -24,7 +24,6 @@ class Supplier_model extends CI_Model
 		$this->db->set("supplier_email", $supplierData["supplier_email"]);
 		$this->db->set("supplier_phone", $supplierData["supplier_phone"]);
 		$this->db->set("supplier_address", $supplierData["supplier_address"]);
-		$this->db->set("supplier_image", $supplierData["supplier_image"]);
 		$this->db->where("id_supplier", $id);
 		$this->db->update("suppliers", $supplierData);
 	}

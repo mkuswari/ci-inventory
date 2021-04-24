@@ -52,17 +52,6 @@
 													<textarea name="supplier_address" id="supplier_address" rows="3" class="form-control <?= form_error('supplier_address') ? 'is-invalid' : ''; ?>"><?= $supplier["supplier_address"] ?></textarea>
 													<?= form_error('supplier_address', '<div class="invalid-feedback font-weight-bold pl-1">', '</div>') ?>
 												</div>
-												<div class="form-group">
-													<label for="supplier_image">Gambar</label>
-													<div class="row">
-														<div class="col-4">
-															<img src="<?= base_url("assets/uploads/suppliers/" . $supplier["supplier_image"]) ?>" width="100%">
-														</div>
-														<div class="col-8">
-															<input type="file" class="form-control" name="supplier_image" id="supplier_image">
-														</div>
-													</div>
-												</div>
 												<hr>
 												<div class="form-action">
 													<button type="submit" class="btn btn-primary btn-lg">Simpan Data</button>

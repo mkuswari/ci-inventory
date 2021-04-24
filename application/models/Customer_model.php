@@ -24,7 +24,6 @@ class Customer_model extends CI_Model
 		$this->db->set("customer_email", $customerData["customer_email"]);
 		$this->db->set("customer_phone", $customerData["customer_phone"]);
 		$this->db->set("customer_address", $customerData["customer_address"]);
-		$this->db->set("customer_image", $customerData["customer_image"]);
 		$this->db->where("id_customer", $id);
 		$this->db->update("customers", $customerData);
 	}

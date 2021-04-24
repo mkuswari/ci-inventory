@@ -36,7 +36,6 @@
 													<th class="text-center">
 														No
 													</th>
-													<th width="150">Gambar</th>
 													<th>Kode Supplier</th>
 													<th>Nama Supplier</th>
 													<th>E-mail Supplier</th>
@@ -50,9 +49,6 @@
 												<?php foreach ($suppliers as $supplier) : ?>
 													<tr>
 														<td><?= $no++; ?></td>
-														<td>
-															<img src="<?= base_url("assets/uploads/suppliers/" . $supplier["supplier_image"]) ?>" width="100%">
-														</td>
 														<td><?= $supplier["supplier_code"] ?></td>
 														<td><?= $supplier["supplier_name"] ?></td>
 														<td><?= $supplier["supplier_email"] ?></td>
