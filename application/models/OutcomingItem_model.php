@@ -1,5 +1,5 @@
 <?php
-class OutcomingItem_model extends CI_Model
+class Outcomingitem_model extends CI_Model
 {
 
 	public function getAllOutcomingItems()

@@ -1,12 +1,12 @@
 <?php
 
-class OutcomingItem extends CI_Controller
+class Outcomingitem extends CI_Controller
 {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('OutcomingItem_model');
+		$this->load->model('Outcomingitem_model');
 		$this->load->model('Item_model');
 		$this->load->model('Customer_model');
 	}
@@ -15,7 +15,7 @@ class OutcomingItem extends CI_Controller
 	{
 		$data = [
 			"title" => "Kelola Barang Keluar",
-			"outcoming_items" => $this->OutcomingItem_model->getAllOutcomingItems()
+			"outcoming_items" => $this->Outcomingitem_model->getAllOutcomingItems()
 		];
 
 		$this->load->view("outcoming_items/v_index", $data);
@@ -25,7 +25,7 @@ class OutcomingItem extends CI_Controller
 	{
 		$data = [
 			"title" => "Tambah Data Barang Keluar",
-			"outcoming_item_code" => $this->OutcomingItem_model->makeOutcomingItemCode(),
+			"outcoming_item_code" => $this->Outcomingitem_model->makeOutcomingItemCode(),
 			"items" => $this->Item_model->getAllItems(),
 			"customers" => $this->Customer_model->getAllCustomers()
 		];
@@ -42,7 +42,7 @@ class OutcomingItem extends CI_Controller
 				"outcoming_item_code" => $this->input->post("outcoming_item_code"),
 				"outcoming_item_qty" => $this->input->post("outcoming_item_qty")
 			];
-			$this->OutcomingItem_model->insertNewOutcomingItem($outcomingItemData);
+			$this->Outcomingitem_model->insertNewOutcomingItem($outcomingItemData);
 			$this->session->set_flashdata('message', 'Ditambah');
 			redirect('outcomingitem');
 		}
@@ -50,7 +50,7 @@ class OutcomingItem extends CI_Controller
 
 	public function delete($id)
 	{
-		$this->OutcomingItem_model->deleteSelectedOutcomingItem($id);
+		$this->Outcomingitem_model->deleteSelectedOutcomingItem($id);
 		$this->session->set_flashdata('message', 'Dihapus');
 		redirect('outcomingitem');
 	}

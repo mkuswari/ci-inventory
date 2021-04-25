@@ -30,8 +30,9 @@
 				</ul>
 			</li>
 			<li class="menu-header">Laporan</li>
-			<li><a class="nav-link" href="blank.html"><i class="fas fa-file"></i> <span>Rekap Transaksi</span></a></li>
-			<li><a class="nav-link" href="blank.html"><i class="fas fa-file"></i> <span>Rekap Supplier</span></a></li>
+			<li><a class="nav-link" href=""><i class="fas fa-file"></i> <span>Rekap Transaksi</span></a></li>
+			<li><a class="nav-link" href="<?= base_url("report/reportsuppliers") ?>"><i class="fas fa-file"></i> <span>Rekap Supplier</span></a></li>
+			<li><a class="nav-link" href="<?= base_url("report/reportcustomers") ?>"><i class="fas fa-file"></i> <span>Rekap Customer</span></a></li>
 			<li class="menu-header">Pengguna</li>
 			<li><a class="nav-link" href="<?= base_url("user") ?>"><i class="fas fa-users"></i> <span>Kelola Users</span></a></li>
 			<li><a class="nav-link" href="<?= base_url("profile") ?>"><i class="fas fa-user-circle"></i> <span>Profil Saya</span></a></li>

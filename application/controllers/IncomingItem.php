@@ -1,11 +1,11 @@
 <?php
-class IncomingItem extends CI_Controller
+class Incomingitem extends CI_Controller
 {
 
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('IncomingItem_model');
+		$this->load->model('Incomingitem_model');
 		$this->load->model('Item_model');
 		$this->load->model('Supplier_model');
 	}
@@ -14,7 +14,7 @@ class IncomingItem extends CI_Controller
 	{
 		$data = [
 			"title" => "Kelola Barang Masuk",
-			"incoming_items" => $this->IncomingItem_model->getAllIncomingItems()
+			"incoming_items" => $this->Incomingitem_model->getAllIncomingItems()
 		];
 
 		$this->load->view("incoming_items/v_index", $data);
@@ -24,7 +24,7 @@ class IncomingItem extends CI_Controller
 	{
 		$data = [
 			"title" => "Tambah Data Barang Masuk",
-			"incoming_item_code" => $this->IncomingItem_model->makeIncomingItemCode(),
+			"incoming_item_code" => $this->Incomingitem_model->makeIncomingItemCode(),
 			"items" => $this->Item_model->getAllItems(),
 			"suppliers" => $this->Supplier_model->getAllSuppliers()
 		];
@@ -42,7 +42,7 @@ class IncomingItem extends CI_Controller
 				"incoming_item_qty" => $this->input->post("incoming_item_qty")
 			];
 
-			$this->IncomingItem_model->insertNewIncomingItem($incomingItemData);
+			$this->Incomingitem_model->insertNewIncomingItem($incomingItemData);
 			$this->session->set_flashdata('message', 'Ditambah');
 			redirect('incomingitem');
 		}
@@ -50,7 +50,7 @@ class IncomingItem extends CI_Controller
 
 	public function delete($id)
 	{
-		$this->IncomingItem_model->deleteSelectedIncomingItem($id);
+		$this->Incomingitem_model->deleteSelectedIncomingItem($id);
 		$this->session->set_flashdata('message', 'Dihapus');
 		redirect('incomingitem');
 	}
