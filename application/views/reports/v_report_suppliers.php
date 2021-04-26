@@ -1,40 +1,40 @@
 <!DOCTYPE html>
 <html><head>
-<style>
-        h1 {
-            text-align: center;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-        }
+	<style>
+		h1 {
+			text-align: center;
+			font-family: Arial, Helvetica, sans-serif;
+			font-weight: bold;
+		}
 
-        #laporan {
-            font-family: Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
+		#laporan {
+			font-family: Arial, Helvetica, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
 			font-size: 13px;
-        }
+		}
 
-        #laporan td,
-        #laporan th {
-            border: 1px solid #ddd;
-            padding: 5px;
-        }
+		#laporan td,
+		#laporan th {
+			border: 1px solid #ddd;
+			padding: 5px;
+		}
 
-        #laporan tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
+		#laporan tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
 
-        #laporan th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #4CAF50;
-            color: white;
-        }
-</style>
+		#laporan th {
+			padding-top: 12px;
+			padding-bottom: 12px;
+			text-align: left;
+			background-color: #4CAF50;
+			color: white;
+		}
+	</style>
 </head><body>
-<h1>Rekap Data Supplier</h1>
-<hr>
+	<h1>Rekap Data Supplier</h1>
+	<hr>
 	<table id="laporan">
 		<tr>
 			<th>Kode Supplier</th>

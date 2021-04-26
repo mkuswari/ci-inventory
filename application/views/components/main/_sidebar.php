@@ -30,7 +30,7 @@
 				</ul>
 			</li>
 			<li class="menu-header">Laporan</li>
-			<li><a class="nav-link" href=""><i class="fas fa-file"></i> <span>Rekap Transaksi</span></a></li>
+			<li><a class="nav-link" href="<?= base_url("report/reporttransactions") ?>"><i class="fas fa-file"></i> <span>Rekap Transaksi</span></a></li>
 			<li><a class="nav-link" href="<?= base_url("report/reportsuppliers") ?>"><i class="fas fa-file"></i> <span>Rekap Supplier</span></a></li>
 			<li><a class="nav-link" href="<?= base_url("report/reportcustomers") ?>"><i class="fas fa-file"></i> <span>Rekap Customer</span></a></li>
 			<li class="menu-header">Pengguna</li>
