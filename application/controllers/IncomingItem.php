@@ -8,6 +8,8 @@ class Incomingitem extends CI_Controller
 		$this->load->model('Incomingitem_model');
 		$this->load->model('Item_model');
 		$this->load->model('Supplier_model');
+
+		must_login();
 	}
 
 	public function index()

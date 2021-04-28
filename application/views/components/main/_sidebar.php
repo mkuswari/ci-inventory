@@ -34,7 +34,11 @@
 			<li><a class="nav-link" href="<?= base_url("report/reportsuppliers") ?>"><i class="fas fa-file"></i> <span>Rekap Supplier</span></a></li>
 			<li><a class="nav-link" href="<?= base_url("report/reportcustomers") ?>"><i class="fas fa-file"></i> <span>Rekap Customer</span></a></li>
 			<li class="menu-header">Pengguna</li>
-			<li><a class="nav-link" href="<?= base_url("user") ?>"><i class="fas fa-users"></i> <span>Kelola Users</span></a></li>
+
+			<?php if ($this->session->userdata("user_role") == "admin") : ?>
+				<li><a class="nav-link" href="<?= base_url("user") ?>"><i class="fas fa-users"></i> <span>Kelola Users</span></a></li>
+			<?php endif; ?>
+
 			<li><a class="nav-link" href="<?= base_url("profile") ?>"><i class="fas fa-user-circle"></i> <span>Profil Saya</span></a></li>
 		</ul>
 

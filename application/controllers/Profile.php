@@ -8,7 +8,8 @@ class Profile extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Profile_model');
-		is_login();
+
+		must_login();
 	}
 
 	public function index()

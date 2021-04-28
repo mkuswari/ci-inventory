@@ -1,17 +1,18 @@
 <?php
 
-function is_login()
+
+function must_login()
 {
-	$isLogin = get_instance();
-	if (!$isLogin->session->userdata("user_email")) {
-		redirect("auth");
+	$mustLogin = get_instance();
+	if (!$mustLogin->session->userdata('user_email')) {
+		redirect('auth');
 	}
 }
 
-function is_admin()
+function must_admin()
 {
-	$isAdmin = get_instance();
-	if (!$isAdmin->session->userdata("user_role") == "admin") {
-		redirect(base_url());
+	$mustAdmin = get_instance();
+	if ($mustAdmin->session->userdata("user_role") !== "admin") {
+		redirect('auth/block');		
 	}
 }

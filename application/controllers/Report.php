@@ -7,6 +7,8 @@ class Report extends CI_Controller
 		parent::__construct();
 		$this->load->library('dompdf_gen');
 		$this->load->model('Report_model');
+
+		must_login();
 	}
 
 	public function reportSuppliers()
@@ -73,7 +75,7 @@ class Report extends CI_Controller
 
 						if ($data["transaksi_keluar"] == NULL) {
 							$this->session->set_flashdata('message', '<div class="alert alert-danger">Data Tidak Ditemukan</div>');
-            				redirect("report/reporttransactions");
+							redirect("report/reporttransactions");
 						}
 
 						// cetak laporan
@@ -102,7 +104,7 @@ class Report extends CI_Controller
 
 						if ($data["transaksi_keluar"] == NULL) {
 							$this->session->set_flashdata('message', '<div class="alert alert-danger">Data Tidak Ditemukan</div>');
-            				redirect("report/reporttransactions");
+							redirect("report/reporttransactions");
 						}
 
 						// cetak laporan
@@ -128,7 +130,7 @@ class Report extends CI_Controller
 
 						if ($data["transaksi_keluar"] == NULL) {
 							$this->session->set_flashdata('message', '<div class="alert alert-danger">Data Tidak Ditemukan</div>');
-            				redirect("report/reporttransactions");
+							redirect("report/reporttransactions");
 						}
 
 						// cetak laporan
@@ -159,7 +161,7 @@ class Report extends CI_Controller
 
 						if (!$data["transaksi_masuk"]) {
 							$this->session->set_flashdata('message', '<div class="alert alert-danger">Data Tidak Ditemukan</div>');
-            				redirect("report/reporttransactions");
+							redirect("report/reporttransactions");
 						}
 
 						// cetak laporan
@@ -187,7 +189,7 @@ class Report extends CI_Controller
 
 						if (!$data["transaksi_masuk"]) {
 							$this->session->set_flashdata('message', '<div class="alert alert-danger">Data Tidak Ditemukan</div>');
-            				redirect("report/reporttransactions");
+							redirect("report/reporttransactions");
 						}
 
 						// cetak laporan
@@ -212,7 +214,7 @@ class Report extends CI_Controller
 
 						if (!$data["transaksi_masuk"]) {
 							$this->session->set_flashdata('message', '<div class="alert alert-danger">Data Tidak Ditemukan</div>');
-            				redirect("report/reporttransactions");
+							redirect("report/reporttransactions");
 						}
 
 						// cetak laporan

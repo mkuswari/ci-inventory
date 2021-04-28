@@ -9,6 +9,8 @@ class Outcomingitem extends CI_Controller
 		$this->load->model('Outcomingitem_model');
 		$this->load->model('Item_model');
 		$this->load->model('Customer_model');
+
+		must_login();
 	}
 
 	public function index()
