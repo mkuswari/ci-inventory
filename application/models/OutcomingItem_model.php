@@ -30,7 +30,7 @@ class Outcomingitem_model extends CI_Model
 		$query = $this->db->get("outcoming_items");
 		if ($query->num_rows() <> 0) {
 			$data = $query->row();
-			$itemCode = intval($data->item_code) + 1;
+			$itemCode = intval($data->outcoming_item_code) + 1;
 		} else {
 			$itemCode = 1;
 		}

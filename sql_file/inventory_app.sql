@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 24, 2021 at 12:52 PM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 7.4.16
+-- Generation Time: Jun 11, 2021 at 08:58 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `inventory_app`
+-- Database: `ci_inventory`
 --
 
 -- --------------------------------------------------------
@@ -42,7 +42,7 @@ INSERT INTO `categories` (`id_category`, `category_name`, `category_description`
 (1, 'Elektronik', '', '2021-04-23 21:19:36'),
 (2, 'Makanan & Minuman', '', '2021-04-23 21:19:43'),
 (3, 'Bahan Baku', '', '2021-04-23 21:19:50'),
-(4, 'ATK', '', '2021-04-23 21:20:22');
+(4, 'ATK (Alat Tulis Kantor)', '', '2021-06-11 17:42:46');
 
 -- --------------------------------------------------------
 
@@ -65,7 +65,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id_customer`, `customer_code`, `customer_name`, `customer_email`, `customer_phone`, `customer_address`, `created_at`) VALUES
-(1, 'CUS24042021001', 'Site Customer', 'customer@mail.com', '081939448487', 'Jl. Bunga Matahari, No.11 Gomong Lama, Mataram.', '2021-04-24 10:37:52');
+(1, 'CUS24042021001', 'Site Customer', 'customer@mail.com', '081939448487', 'Jl. Bunga Matahari, No.11 Gomong Lama, Mataram.', '2021-04-24 10:37:52'),
+(2, 'CUS11062021002', 'Muhammad Kuswari', 'ahsdkjashdsad', '12632179863', 'kajlhdskdhasd asdjasd', '2021-06-11 17:44:39');
 
 -- --------------------------------------------------------
 
@@ -81,6 +82,13 @@ CREATE TABLE `incoming_items` (
   `incoming_item_qty` int(11) NOT NULL,
   `incoming_item_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `incoming_items`
+--
+
+INSERT INTO `incoming_items` (`id_incoming_items`, `id_items`, `id_supplier`, `incoming_item_code`, `incoming_item_qty`, `incoming_item_date`) VALUES
+(2, 1, 2, 'TRX-M11062021001', 21, '2021-06-11 18:40:19');
 
 --
 -- Triggers `incoming_items`
@@ -118,7 +126,8 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`id_item`, `id_category`, `id_unit`, `item_code`, `item_name`, `item_image`, `item_stock`, `item_stock_min`, `item_price`, `item_description`, `created_at`) VALUES
-(1, 1, 3, 'BRG23042021001', 'Monitor SPC Pro SM-24', 'BRG23042021001.jpeg', 10, 0, 1400000, 'Monitor SPC PRO SM-24, Brand Lokal dengan Kualitas Mantap', '2021-04-23 21:21:28');
+(1, 1, 3, 'BRG23042021001', 'Monitor SPC Pro SM-24', 'BRG23042021001.jpeg', 52, 0, 1400000, 'Monitor SPC PRO SM-24, Brand Lokal dengan Kualitas Mantap', '2021-06-11 18:40:19'),
+(2, 4, 2, 'BRG11062021002', 'test', 'BRG11062021002.png', 79, 0, 6000, 'ashajhsasasasas', '2021-06-11 18:57:48');
 
 -- --------------------------------------------------------
 
@@ -137,11 +146,19 @@ CREATE TABLE `outcoming_items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `outcoming_items`
+--
+
+INSERT INTO `outcoming_items` (`id_outcoming_item`, `id_items`, `id_customer`, `outcoming_item_code`, `outcoming_item_qty`, `outcoming_item_price`, `outcoming_item_date`) VALUES
+(3, 1, 1, 'TRX-K11062021001', 12, 0, '2021-06-11 18:30:28'),
+(4, 2, 2, 'TRX-K11062021002', 21, 0, '2021-06-11 18:57:48');
+
+--
 -- Triggers `outcoming_items`
 --
 DELIMITER $$
 CREATE TRIGGER `barang_keluar` AFTER INSERT ON `outcoming_items` FOR EACH ROW BEGIN
-	UPDATE items SET item_stock=items_stock-NEW.outcoming_item_qty
+	UPDATE items SET item_stock=item_stock-NEW.outcoming_item_qty
     WHERE id_item = NEW.id_items;
 END
 $$
@@ -168,7 +185,8 @@ CREATE TABLE `suppliers` (
 --
 
 INSERT INTO `suppliers` (`id_supplier`, `supplier_code`, `supplier_name`, `supplier_email`, `supplier_phone`, `supplier_address`, `created_at`) VALUES
-(1, 'SPL24042021001', 'Site Supplier', 'supplier@mail.com', '081939448487', 'Jl. Bunga Matahari, No.11 Gomong Lama, Mataram.', '2021-04-24 10:37:18');
+(1, 'SPL24042021001', 'Site Supplier', 'supplier@mail.com', '081939448487', 'Jl. Bunga Matahari, No.11 Gomong Lama, Mataram.', '2021-04-24 10:37:18'),
+(2, 'SPL11062021002', 'Muhammad Kuswari', 'muhammad.kuswari10@gmail.com', '081939448487', 'Jl. Bunga Matahari, No.11 Gomong Lama, Mataram.', '2021-06-11 17:43:48');
 
 -- --------------------------------------------------------
 
@@ -292,31 +310,31 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `incoming_items`
 --
 ALTER TABLE `incoming_items`
-  MODIFY `id_incoming_items` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_incoming_items` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `outcoming_items`
 --
 ALTER TABLE `outcoming_items`
-  MODIFY `id_outcoming_item` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_outcoming_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
-  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `units`

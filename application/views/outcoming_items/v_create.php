@@ -64,7 +64,7 @@
 															<span class="input-group-text" id="unitName">Satuan</span>
 														</div>
 													</div>
-														<div class="invalid-feedback" id="errorValue">Jumlah Barang Keluar lebih besar dari stok barang</div>
+													<div class="invalid-feedback" id="errorValue">Jumlah Barang Keluar lebih besar dari stok barang</div>
 												</div>
 												<div class="form-group">
 													<label for="item_stock_total">Sisa Stock Barang</label>
@@ -117,12 +117,12 @@
 				stockOut = parseInt(stockOut);
 				if (parseInt(stock) < stockOut) {
 					$('#errorValue').show();
-					$('button[type="submit"]').prop('disabled',true);
+					$('button[type="submit"]').prop('disabled', true);
 					$('#ItemStockTotal').val(stock);
 					return
-				}else{
+				} else {
 					$('#errorValue').hide();
-					$('button[type="submit"]').prop('disabled',false);
+					$('button[type="submit"]').prop('disabled', false);
 				}
 
 				var totalStock = stock - stockOut;
@@ -149,12 +149,12 @@
 				value = parseInt(value);
 				if (value > total) {
 					$('#errorValue').show();
-					$('button[type="submit"]').prop('disabled',true);
+					$('button[type="submit"]').prop('disabled', true);
 					$('#ItemStockTotal').val(total);
 					return
-				}else{
+				} else {
 					$('#errorValue').hide();
-					$('button[type="submit"]').prop('disabled',false);
+					$('button[type="submit"]').prop('disabled', false);
 				}
 				$('#ItemStockTotal').val(parseInt(total) - parseInt(value));
 			});

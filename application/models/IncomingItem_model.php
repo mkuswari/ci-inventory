@@ -26,9 +26,9 @@ class Incomingitem_model extends CI_Model
 		$this->db->order_by('incoming_item_code', 'DESC');
 		$this->db->limit(1);
 		$query = $this->db->get("incoming_items");
-		if ($query->num_rows() <> 0) {
+		if ($query->num_rows() > 0) {
 			$data = $query->row();
-			$itemCode = intval($data->item_code) + 1;
+			$itemCode = intval($data->incoming_item_code) + 1;
 		} else {
 			$itemCode = 1;
 		}

@@ -99,25 +99,25 @@
 
 			var total = null;
 			var dataItem = <?= json_encode($items) ?>;
-				$('#ItemId').change(function(e) {
-					e.preventDefault();
-					var value = $(this).val();
-					var barang = dataItem.filter(item => item.id_item == value);
-					if (barang.length == 0) {
-						return
-					}
-					barang = barang[0];
-					var stock = barang.item_stock;
-					$('#ItemStock').val(stock);
-					var stockIn = $('#IncomingItemQty').val();
-					var totalStock = stock + stockIn;
-					total = totalStock;
-					$('#ItemStockTotal').val(totalStock);
+			$('#ItemId').change(function(e) {
+				e.preventDefault();
+				var value = $(this).val();
+				var barang = dataItem.filter(item => item.id_item == value);
+				if (barang.length == 0) {
+					return
+				}
+				barang = barang[0];
+				var stock = barang.item_stock;
+				$('#ItemStock').val(stock);
+				var stockIn = $('#IncomingItemQty').val();
+				var totalStock = stock + stockIn;
+				total = totalStock;
+				$('#ItemStockTotal').val(totalStock);
 
-					var unitName = barang.unit_name;
-					$('#unitName').text(unitName);
+				var unitName = barang.unit_name;
+				$('#unitName').text(unitName);
 
-				})
+			})
 
 			$('#IncomingItemQty').keyup(function() {
 				var value = $(this).val();
