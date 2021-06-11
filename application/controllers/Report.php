@@ -73,7 +73,7 @@ class Report extends CI_Controller
 							"transaksi_keluar" => 'transaksikeluar/cetak?filter=1&tanggal=' . $tgl
 						];
 
-						if ($data["transaksi_keluar"] == NULL) {
+						if ($data["transaksi_keluar"] == 0) {
 							$this->session->set_flashdata('message', '<div class="alert alert-danger">Data Tidak Ditemukan</div>');
 							redirect("report/reporttransactions");
 						}
